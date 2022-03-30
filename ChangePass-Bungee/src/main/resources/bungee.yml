@@ -1,0 +1,4 @@
+name: ChangePass
+version: ${project.version}
+main: me.l2x9.changepass.ChangePass
+description: Change passwords
