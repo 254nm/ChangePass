@@ -7,7 +7,7 @@
     <groupId>me.l2x9</groupId>
     <artifactId>ChangePass-Parent</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-PRE-ALPHA</version>
+    <version>1.2-SNAPSHOT</version>
     <modules>
         <module>ChangePass-Bungee</module>
         <module>ChangePass-Spigot</module>

@@ -6,7 +6,7 @@
 
     <groupId>me.l2x9</groupId>
     <artifactId>ChangePass-Bungee</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.2-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>ChangePass-Bungee</name>
