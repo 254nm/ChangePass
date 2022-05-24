@@ -31,7 +31,8 @@ public class ChangePassCommand extends Command {
             ProxiedPlayer player = (ProxiedPlayer) sender;
             if (player.getServer().getInfo().equals(main)) {
                 if (args.length == 2) {
-                    String newPassword = args[0];
+                    String oldPassword = args[0];
+                    String newPassword = args[1];
                     if (newPassword.contains(" ")) {
                         player.sendMessage(new TextComponent(ChatColor.RED + "The new password cannot contain spaces"));
                         return;
@@ -40,15 +41,12 @@ public class ChangePassCommand extends Command {
                         ByteArrayOutputStream baos = new ByteArrayOutputStream();
                         DataOutputStream out = new DataOutputStream(baos);
                         out.writeUTF(newPassword);
-                        out.writeUTF(args[1]);
+                        out.writeUTF(oldPassword);
                         out.writeUTF(player.getName());
                         out.flush();
                         player.connect(auth);
                         auth.sendData("auth:channel", baos.toByteArray());
-                        ProxyServer.getInstance().getScheduler().schedule(plugin, () -> {
-                            player.connect(main);
-                            player.sendMessage(new TextComponent(ChatColor.GREEN + "Password changed successfully"));
-                        }, 3, TimeUnit.SECONDS);
+                        ProxyServer.getInstance().getScheduler().schedule(plugin, () -> player.connect(main), 3, TimeUnit.SECONDS);
                         out.close();
                         baos.close();
                     } catch (Throwable t) {
