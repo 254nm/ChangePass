@@ -3,7 +3,7 @@ package me.l2x9.chagepass;
 import me.l2x9.chagepass.listeners.PluginMessageHandler;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class ChagePass extends JavaPlugin {
+public final class ChangePass extends JavaPlugin {
 
     @Override
     public void onEnable() {

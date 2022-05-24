@@ -1,5 +1,7 @@
-name: ChagePass
+name: ChangePass
 version: ${project.version}
-main: me.l2x9.chagepass.ChagePass
+main: me.l2x9.chagepass.ChangePass
 authors: [ 254n_m ]
 description: Allow mexicans to change their passwords
+depend:
+  - AuthMe

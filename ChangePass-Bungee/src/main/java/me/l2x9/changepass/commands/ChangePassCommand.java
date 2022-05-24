@@ -30,16 +30,17 @@ public class ChangePassCommand extends Command {
         if (sender instanceof ProxiedPlayer) {
             ProxiedPlayer player = (ProxiedPlayer) sender;
             if (player.getServer().getInfo().equals(main)) {
-                if (args.length == 1) {
-                    String password = args[0];
-                    if (password.contains(" ")) {
+                if (args.length == 2) {
+                    String newPassword = args[0];
+                    if (newPassword.contains(" ")) {
                         player.sendMessage(new TextComponent(ChatColor.RED + "The new password cannot contain spaces"));
                         return;
                     }
                     try {
                         ByteArrayOutputStream baos = new ByteArrayOutputStream();
                         DataOutputStream out = new DataOutputStream(baos);
-                        out.writeUTF(args[0]);
+                        out.writeUTF(newPassword);
+                        out.writeUTF(args[1]);
                         out.writeUTF(player.getName());
                         out.flush();
                         player.connect(auth);
@@ -47,13 +48,13 @@ public class ChangePassCommand extends Command {
                         ProxyServer.getInstance().getScheduler().schedule(plugin, () -> {
                             player.connect(main);
                             player.sendMessage(new TextComponent(ChatColor.GREEN + "Password changed successfully"));
-                        }, 1, TimeUnit.SECONDS);
+                        }, 3, TimeUnit.SECONDS);
                         out.close();
                         baos.close();
                     } catch (Throwable t) {
                         t.printStackTrace();
                     }
-                } else player.sendMessage(new TextComponent(ChatColor.RED + "/changepass <newPassword>"));
+                } else player.sendMessage(new TextComponent(ChatColor.RED + "/changepass <oldPassword> <newPassword>"));
             } else player.sendMessage(new TextComponent(ChatColor.RED + "You must be connected to the main server"));
         }
     }
