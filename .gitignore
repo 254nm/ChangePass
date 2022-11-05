@@ -110,3 +110,7 @@ buildNumber.properties
 
 # Common working directory
 run/
+
+
+#Allow the lib directory
+!lib/
